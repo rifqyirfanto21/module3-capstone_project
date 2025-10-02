@@ -1,0 +1,19 @@
+version: '3.9'
+
+services:
+  postgres:
+    image: postgres:14
+    container_name: project_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: purwadhika
+      POSTGRES_PASSWORD: purwadhika123
+      POSTGRES_DB: module3_capstone-project
+    ports:
+      - "5440:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+volumes:
+  postgres_data:

@@ -10,18 +10,19 @@ def generate_users(n):
     """
     email_domains = ["gmail.com", "yahoo.com", "outlook.com"]
     users = []
-    for i in range(n):
+    for idx in range(1, n+1):
         full_name = fake.name()
         username = full_name.lower().replace(" ", ".")
         domain = random.choice(email_domains)
         email = f"{username}@{domain}"
 
         users.append({
+            "user_id": idx,
             "full_name": full_name,
             "email": email,
             "address": fake.address(),
             "phone_number": fake.phone_number(),
-            "created_at": fake.date_time_between(start_date="-1y", end_date="now")
+            "created_at": datetime.datetime.now()
         })
     return users
 
@@ -37,9 +38,16 @@ def generate_payment_methods():
         {"method_name": "Digital Wallet", "provider": "Apple Pay"},
         {"method_name": "Digital Wallet", "provider": "Google Pay"}
     ]
-    for m in methods:
-        m["created_at"] = fake.date_time_between(start_date="-1y", end_date="now")
-    return methods
+    result = []
+    for idx, m in enumerate(methods, start=1):
+        result.append({
+            "payment_method_id": idx,
+            "method_name": m["method_name"],
+            "provider": m["provider"],
+            "created_at": datetime.datetime.now()
+        })
+
+    return result
 
 def generate_shipping_methods():
     """
@@ -53,9 +61,16 @@ def generate_shipping_methods():
         {"carrier_name": "UPS", "shipping_type": "Ground"},
         {"carrier_name": "UPS", "shipping_type": "Next Day Air"},
     ]
-    for s in shippings:
-        s["created_at"] = fake.date_time_between(start_date="-1y", end_date="now")
-    return shippings
+    result = []
+    for idx, s in enumerate(shippings, start=1):
+        result.append({
+            "shipping_method_id": idx,
+            "carrier_name": s["carrier_name"],
+            "shipping_type": s["shipping_type"],
+            "created_at": datetime.datetime.now()
+        })
+
+    return result
 
 def generate_products():
     """
@@ -96,18 +111,44 @@ def generate_products():
     }
 
     products = []
+    idx = 1
     for category, items in products_data.items():
         for item in items:
             products.append({
+                "product_id": idx,
                 "product_name": item["product_name"],
                 "brand": item["brand"],
                 "category": category,
                 "currency": "USD",
                 "price": item["price"],
                 "cost": item["cost"],
-                "created_at": fake.date_time_between(start_date="-1y", end_date="now")
+                "created_at": datetime.datetime.now()
             })
+            idx += 1
     return products
-    
-sample = generate_products()
-print(sample)
+
+def generate_transactions(n, users, products, payment_methods, shipping_methods):
+    """
+    Generate n transaction records based on existing dimension tables
+    """
+    transactions = []
+    for i in range(1, n+1):
+        user = random.choice(users)
+        product = random.choice(products)
+        payment = random.choice(payment_methods)
+        shipping = random.choice(shipping_methods)
+        quantity = random.randint(1, 5)
+        total_amount = product["price"] * quantity
+
+        transactions.append({
+            "transaction_id": i,
+            "user_id": user["user_id"],
+            "product_id": product["product_id"],
+            "payment_method_id": payment["payment_method_id"],
+            "shipping_method_id": shipping["shipping_method_id"],
+            "quantity": quantity,
+            "total_amount": total_amount,
+            "created_at": datetime.datetime.now()
+        })
+
+    return transactions

@@ -1,4 +1,4 @@
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, text
 from config.setting import DB_CONFIG
 
 def get_db_connection():
@@ -23,8 +23,8 @@ def insert_users(users):
     with engine.begin() as conn:
         conn.execute(
             text("""
-                INSERT INTO dim_users (full_name, email, address, phone_number, created_at)
-                VALUES (:full_name, :email, :address, :phone_number, :created_at))
+                INSERT INTO users (user_id, full_name, email, address, phone_number, created_at)
+                VALUES (:user_id, :full_name, :email, :address, :phone_number, :created_at)
             """),
             users
         )
@@ -36,8 +36,8 @@ def insert_payment_methods(methods):
     with engine.begin() as conn:
         conn.execute(
             text("""
-                INSERT INTO dim_payment_methods (method_name, provider, created_at)
-                VALUES (:method_name, :provider, :created_at)
+                INSERT INTO payment_methods (payment_method_id, method_name, provider, created_at)
+                VALUES (:payment_method_id, :method_name, :provider, :created_at)
             """),
             methods
         )
@@ -49,8 +49,8 @@ def insert_shipping_methods(shippings):
     with engine.begin() as conn:
         conn.execute(
             text("""
-                INSERT INTO dim_shipping_methods (carrier_name, shipping_type, created_at)
-                VALUES (:carrier_name, :shipping_type, :created_at)
+                INSERT INTO shipping_methods (shipping_method_id, carrier_name, shipping_type, created_at)
+                VALUES (:shipping_method_id, :carrier_name, :shipping_type, :created_at)
             """),
             shippings
         )
@@ -62,8 +62,29 @@ def insert_products(products):
     with engine.begin() as conn:
         conn.execute(
             text("""
-                INSERT INTO dim_products (product_name, brand, category, currency, price, cost, created_at)
-                VALUES (:product_name, :brand, :category, :currency, :price, :cost, :created_at)
+                INSERT INTO products (product_id, product_name, brand, category, currency, price, cost, created_at)
+                VALUES (:product_id, :product_name, :brand, :category, :currency, :price, :cost, :created_at)
             """),
             products
+        )
+
+def insert_transactions(transactions):
+    """
+    Insert transactions data into transactions table
+    """
+    with engine.begin() as conn:
+        conn.execute(
+            text("""
+                INSERT INTO transactions (
+                    transaction_id, user_id, product_id,
+                    payment_method_id, shipping_method_id,
+                    quantity, total_amount, created_at
+                )
+                VALUES (
+                    :transaction_id, :user_id, :product_id,
+                    :payment_method_id, :shipping_method_id,
+                    :quantity, :total_amount, :created_at
+                )
+            """),
+            transactions
         )

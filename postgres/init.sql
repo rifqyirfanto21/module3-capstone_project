@@ -1,11 +1,11 @@
-DROP TABLE IF EXISTS fact_transactions CASCADE;
-DROP TABLE IF EXISTS dim_users CASCADE;
-DROP TABLE IF EXISTS dim_products CASCADE;
-DROP TABLE IF EXISTS dim_payment_methods CASCADE;
-DROP TABLE IF EXISTS dim_shipping_methods CASCADE;
+DROP TABLE IF EXISTS transactions CASCADE;
+DROP TABLE IF EXISTS users CASCADE;
+DROP TABLE IF EXISTS products CASCADE;
+DROP TABLE IF EXISTS payment_methods CASCADE;
+DROP TABLE IF EXISTS shipping_methods CASCADE;
 
-CREATE TABLE dim_users (
-    user_id SERIAL PRIMARY KEY,
+CREATE TABLE users (
+    user_id INT PRIMARY KEY,
     full_name VARCHAR(255) NOT NULL,
     email VARCHAR(255) UNIQUE NOT NULL,
     address TEXT,
@@ -13,8 +13,8 @@ CREATE TABLE dim_users (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE dim_products (
-    product_id SERIAL PRIMARY KEY,
+CREATE TABLE products (
+    product_id INT PRIMARY KEY,
     product_name VARCHAR(255) NOT NULL,
     brand VARCHAR(100),
     category VARCHAR(100),
@@ -24,20 +24,22 @@ CREATE TABLE dim_products (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE dim_payment_methods (
-    payment_method_id SERIAL PRIMARY KEY,
+CREATE TABLE payment_methods (
+    payment_method_id INT PRIMARY KEY,
     method_name VARCHAR(100) NOT NULL,
+    provider VARCHAR(100) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE dim_shipping_methods (
-    shipping_method_id SERIAL PRIMARY KEY,
-    method_name VARCHAR(100) NOT NULL,
+CREATE TABLE shipping_methods (
+    shipping_method_id INT PRIMARY KEY,
+    carrier_name VARCHAR(100) NOT NULL,
+    shipping_type VARCHAR(100) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE fact_transactions (
-    transaction_id SERIAL PRIMARY KEY,
+CREATE TABLE transactions (
+    transaction_id INT PRIMARY KEY,
     user_id INT NOT NULL,
     product_id INT NOT NULL,
     payment_method_id INT NOT NULL,
@@ -46,9 +48,9 @@ CREATE TABLE fact_transactions (
     total_amount NUMERIC(12,2) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 
-    CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES dim_users(user_id),
-    CONSTRAINT fk_product FOREIGN KEY (product_id) REFERENCES dim_products(product_id),
-    CONSTRAINT fk_payment FOREIGN KEY (payment_method_id) REFERENCES dim_payment_methods(payment_method_id),
-    CONSTRAINT fk_shipping FOREIGN KEY (shipping_method_id) REFERENCES dim_shipping_methods(shipping_method_id),
+    CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES users(user_id),
+    CONSTRAINT fk_product FOREIGN KEY (product_id) REFERENCES products(product_id),
+    CONSTRAINT fk_payment FOREIGN KEY (payment_method_id) REFERENCES payment_methods(payment_method_id),
+    CONSTRAINT fk_shipping FOREIGN KEY (shipping_method_id) REFERENCES shipping_methods(shipping_method_id),
     CONSTRAINT chk_quantity CHECK (quantity > 0)
 );

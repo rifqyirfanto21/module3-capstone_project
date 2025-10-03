@@ -5,6 +5,9 @@ import datetime
 fake = Faker("en_US")
 
 def generate_users(n):
+    """
+    Generate n users with dummy localized data
+    """
     email_domains = ["gmail.com", "yahoo.com", "outlook.com"]
     users = []
     for i in range(n):
@@ -23,6 +26,9 @@ def generate_users(n):
     return users
 
 def generate_payment_methods():
+    """
+    Generate predefined payment methods dummy data
+    """
     methods = [
         {"method_name": "Credit Card", "provider": "Visa"},
         {"method_name": "Credit Card", "provider": "MasterCard"},
@@ -36,6 +42,9 @@ def generate_payment_methods():
     return methods
 
 def generate_shipping_methods():
+    """
+    Generate predefined shipping methods dummy data
+    """
     shippings = [
         {"carrier_name": "USPS", "shipping_type": "Standard"},
         {"carrier_name": "USPS", "shipping_type": "Priority"},
@@ -49,6 +58,9 @@ def generate_shipping_methods():
     return shippings
 
 def generate_products():
+    """
+    Generate predefined products dummy data
+    """
     products_data = {
         "Consoles": [
             {"brand": "Sony", "product_name": "PlayStation 5", "price": 499, "cost": 420},

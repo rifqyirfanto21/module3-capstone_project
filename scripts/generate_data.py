@@ -132,7 +132,7 @@ def generate_transactions(n, users, products, payment_methods, shipping_methods)
     Generate n transaction records based on existing dimension tables
     """
     transactions = []
-    for i in range(1, n+1):
+    for i in range(n):
         user = random.choice(users)
         product = random.choice(products)
         payment = random.choice(payment_methods)
@@ -141,7 +141,6 @@ def generate_transactions(n, users, products, payment_methods, shipping_methods)
         total_amount = product["price"] * quantity
 
         transactions.append({
-            "transaction_id": i,
             "user_id": user["user_id"],
             "product_id": product["product_id"],
             "payment_method_id": payment["payment_method_id"],

@@ -1,11 +1,11 @@
-from generate_data import (
+from scripts.generate_data import (
     generate_users,
     generate_payment_methods,
     generate_shipping_methods,
     generate_products,
     generate_transactions
 )
-from db_utils import (
+from scripts.db_utils import (
     insert_users,
     insert_payment_methods,
     insert_shipping_methods,
@@ -19,7 +19,7 @@ def main():
     shipping_methods = generate_shipping_methods()
     products = generate_products()
     transactions = generate_transactions(
-        n=200,
+        n=100,
         users=users,
         products=products,
         payment_methods=payment_methods,
@@ -31,6 +31,8 @@ def main():
     insert_shipping_methods(shipping_methods)
     insert_products(products)
     insert_transactions(transactions)
+
+    print("Data insertion completed")
 
 if __name__ == "__main__":
     main()

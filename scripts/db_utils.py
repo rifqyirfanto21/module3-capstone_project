@@ -1,5 +1,5 @@
 from sqlalchemy import create_engine, text
-from config.setting import DB_CONFIG
+from setting import DB_CONFIG
 
 def get_db_connection():
     """
@@ -76,12 +76,12 @@ def insert_transactions(transactions):
         conn.execute(
             text("""
                 INSERT INTO transactions (
-                    transaction_id, user_id, product_id,
+                    user_id, product_id,
                     payment_method_id, shipping_method_id,
                     quantity, total_amount, created_at
                 )
                 VALUES (
-                    :transaction_id, :user_id, :product_id,
+                    :user_id, :product_id,
                     :payment_method_id, :shipping_method_id,
                     :quantity, :total_amount, :created_at
                 )

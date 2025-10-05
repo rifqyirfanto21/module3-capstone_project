@@ -39,7 +39,7 @@ CREATE TABLE shipping_methods (
 );
 
 CREATE TABLE transactions (
-    transaction_id INT PRIMARY KEY,
+    transaction_id SERIAL PRIMARY KEY,
     user_id INT NOT NULL,
     product_id INT NOT NULL,
     payment_method_id INT NOT NULL,

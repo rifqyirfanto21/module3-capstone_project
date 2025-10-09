@@ -10,14 +10,14 @@ def generate_users(n):
     """
     email_domains = ["gmail.com", "yahoo.com", "outlook.com"]
     users = []
-    for idx in range(1, n+1):
+    for id in range(1, n+1):
         full_name = fake.name()
         username = full_name.lower().replace(" ", ".")
         domain = random.choice(email_domains)
         email = f"{username}@{domain}"
 
         users.append({
-            "user_id": idx,
+            "user_id": id,
             "full_name": full_name,
             "email": email,
             "address": fake.address(),
@@ -39,11 +39,11 @@ def generate_payment_methods():
         {"method_name": "Digital Wallet", "provider": "Google Pay"}
     ]
     result = []
-    for idx, m in enumerate(methods, start=1):
+    for id, method in enumerate(methods, start=1):
         result.append({
-            "payment_method_id": idx,
-            "method_name": m["method_name"],
-            "provider": m["provider"],
+            "payment_method_id": id,
+            "method_name": method["method_name"],
+            "provider": method["provider"],
             "created_at": datetime.datetime.now()
         })
 
@@ -62,11 +62,11 @@ def generate_shipping_methods():
         {"carrier_name": "UPS", "shipping_type": "Next Day Air"},
     ]
     result = []
-    for idx, s in enumerate(shippings, start=1):
+    for id, shipping in enumerate(shippings, start=1):
         result.append({
-            "shipping_method_id": idx,
-            "carrier_name": s["carrier_name"],
-            "shipping_type": s["shipping_type"],
+            "shipping_method_id": id,
+            "carrier_name": shipping["carrier_name"],
+            "shipping_type": shipping["shipping_type"],
             "created_at": datetime.datetime.now()
         })
 
@@ -111,11 +111,11 @@ def generate_products():
     }
 
     products = []
-    idx = 1
+    id = 1
     for category, items in products_data.items():
         for item in items:
             products.append({
-                "product_id": idx,
+                "product_id": id,
                 "product_name": item["product_name"],
                 "brand": item["brand"],
                 "category": category,
@@ -124,7 +124,7 @@ def generate_products():
                 "cost": item["cost"],
                 "created_at": datetime.datetime.now()
             })
-            idx += 1
+            id += 1
     return products
 
 def generate_transactions(n, users, products, payment_methods, shipping_methods):

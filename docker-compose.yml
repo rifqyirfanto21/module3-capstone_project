@@ -1,6 +1,8 @@
 x-airflow-common:
   &airflow-common
-  image: apache/airflow:2.10.2
+  build:
+    context: .
+    dockerfile: Dockerfile
   environment:
     &airflow-common-env
     AIRFLOW__CORE__EXECUTOR: LocalExecutor
@@ -12,14 +14,17 @@ x-airflow-common:
     _AIRFLOW_WWW_USER_CREATE: 'true'
     _AIRFLOW_WWW_USER_USERNAME: airflow
     _AIRFLOW_WWW_USER_PASSWORD: airflow
-    _PIP_ADDITIONAL_REQUIREMENTS: "dbt-core dbt-postgres google-cloud-bigquery psycopg2-binary SQLalchemy Faker"
     PYTHONPATH: "/opt/airflow/scripts:/opt/airflow/config:/opt/airflow/dags"
+    GOOGLE_APPLICATION_CREDENTIALS: /home/airflow/.config/gcloud/application_default_credentials.json
+    DBT_PROFILES_DIR: /opt/dbt
   volumes:
     - ./airflow/dags:/opt/airflow/dags
     - ./airflow/logs:/opt/airflow/logs
     - ./airflow/plugins:/opt/airflow/plugins
     - ./scripts:/opt/airflow/scripts
     - ./config:/opt/airflow/config
+    - ./dbt:/opt/dbt
+    - ~/.config/gcloud:/home/airflow/.config/gcloud:ro
   networks:
     - airflow-net
   user: "${AIRFLOW_UID:-50000}:0"

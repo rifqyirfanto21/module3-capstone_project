@@ -1,0 +1,13 @@
+# .dockerignore
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+airflow/logs/
+airflow/plugins/__pycache__/
+.git/
+.gitignore
+*.md
+.env

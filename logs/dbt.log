@@ -1,0 +1,30 @@
+[0m23:24:31.269182 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x75f8443a0980>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x75f844a637a0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x75f844fbd8e0>]}
+
+
+============================== 23:24:31.296083 | 35819d67-d1e6-4dc4-9d14-1f2b7f1aeca4 ==============================
+[0m23:24:31.296083 [info ] [MainThread]: Running with dbt=1.10.11
+[0m23:24:31.301547 [debug] [MainThread]: running dbt with arguments {'send_anonymous_usage_stats': 'True', 'use_colors': 'True', 'empty': 'None', 'partial_parse': 'True', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'invocation_command': 'dbt init module3_capstone_project', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'version_check': 'True', 'static_parser': 'True', 'printer_width': '80', 'cache_selected_only': 'False', 'quiet': 'False', 'use_experimental_parser': 'False', 'no_print': 'None', 'write_json': 'True', 'debug': 'False', 'warn_error': 'None', 'introspect': 'True', 'log_path': 'logs', 'fail_fast': 'False', 'target_path': 'None', 'log_format': 'default', 'profiles_dir': '/home/rifqyirfanto/.dbt'}
+[0m23:24:31.358754 [debug] [MainThread]: Starter project path: /home/rifqyirfanto/module3-capstone_project/venv/lib/python3.12/site-packages/dbt/include/starter_project
+[0m23:24:31.393430 [info ] [MainThread]: 
+Your new dbt project "module3_capstone_project" was created!
+
+For more information on how to configure the profiles.yml file,
+please consult the dbt documentation here:
+
+  https://docs.getdbt.com/docs/configure-your-profile
+
+One more thing:
+
+Need help? Don't hesitate to reach out to us via GitHub issues or on Slack:
+
+  https://community.getdbt.com/
+
+Happy modeling!
+
+[0m23:24:31.395424 [info ] [MainThread]: Setting up your profile.
+[0m23:25:26.790348 [info ] [MainThread]: Profile module3_capstone_project written to /home/rifqyirfanto/.dbt/profiles.yml using target's profile_template.yml and your supplied values. Run 'dbt debug' to validate the connection.
+[0m23:25:26.816680 [debug] [MainThread]: Resource report: {"command_name": "init", "command_success": true, "command_wall_clock_time": 59.04359, "process_in_blocks": "4600", "process_kernel_time": 7.254879, "process_mem_max_rss": "361120", "process_out_blocks": "80", "process_user_time": 18.847897}
+[0m23:25:26.820088 [debug] [MainThread]: Command `dbt init` succeeded at 23:25:26.819615 after 59.05 seconds
+[0m23:25:26.833168 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x75f844af4ec0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x75f81a721610>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x75f81a8f0470>]}
+[0m23:25:26.835260 [debug] [MainThread]: Flushing usage events
+[0m23:25:28.907942 [debug] [MainThread]: An error was encountered while trying to flush usage events

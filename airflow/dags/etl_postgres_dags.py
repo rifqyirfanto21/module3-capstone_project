@@ -1,7 +1,7 @@
 from airflow import DAG
 from airflow.operators.python import PythonOperator
 from airflow.operators.dummy import DummyOperator
-from datetime import datetime, timedelta
+from datetime import datetime
 from db_utils import insert_users, insert_payment_methods, insert_shipping_methods, insert_products, insert_transactions
 from generate_data import generate_users, generate_payment_methods, generate_shipping_methods, generate_products, generate_transactions
 

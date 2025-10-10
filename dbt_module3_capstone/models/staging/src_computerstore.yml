@@ -1,0 +1,36 @@
+version: 2
+
+sources:
+  - name: rifqy_computerstore_capstone3
+    database: jcdeah-006
+    tables:
+      - name: fct_transactions
+        columns:
+          - name: transaction_id
+            tests:
+              - unique
+              - not_null
+      - name: dim_users
+        columns:
+          - name: user_id
+            tests:
+              - unique
+              - not_null
+      - name: dim_payment_methods
+        columns:
+          - name: payment_method_id
+            tests:
+              - unique
+              - not_null
+      - name: dim_shipping_methods
+        columns:
+          - name: shipping_method_id
+            tests:
+              - unique
+              - not_null
+      - name: dim_products
+        columns:
+          - name: product_id
+            tests:
+              - unique
+              - not_null

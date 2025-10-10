@@ -23,7 +23,7 @@ x-airflow-common:
     - ./airflow/plugins:/opt/airflow/plugins
     - ./scripts:/opt/airflow/scripts
     - ./config:/opt/airflow/config
-    - ./dbt:/opt/dbt
+    - ./dbt_module3_capstone:/opt/dbt
     - ~/.config/gcloud:/home/airflow/.config/gcloud:ro
   networks:
     - airflow-net

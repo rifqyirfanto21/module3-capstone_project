@@ -1,3 +1,10 @@
+{{
+    config(
+        materialized='table',
+        cluster_by=['brand', 'category']
+    )
+}}
+
 WITH transactions AS(
     SELECT *
     FROM {{ source('rifqy_computerstore_capstone3', 'fct_transactions') }}
@@ -16,4 +23,3 @@ SELECT
 FROM transactions t
 JOIN products p ON t.product_id = p.product_id
 GROUP BY 1, 2, 3, 4
-ORDER BY 6 DESC

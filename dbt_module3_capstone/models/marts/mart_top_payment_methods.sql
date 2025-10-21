@@ -1,3 +1,10 @@
+{{
+    config(
+        materialized='table',
+        cluster_by=['method_name', 'provider']
+    )
+}}
+
 WITH transactions AS(
     SELECT *
     FROM {{ source('rifqy_computerstore_capstone3', 'fct_transactions') }}
@@ -13,4 +20,3 @@ SELECT
 FROM transactions t
 JOIN payment_methods pm ON t.payment_method_id = pm.payment_method_id
 GROUP BY 1, 2
-ORDER BY 4 DESC

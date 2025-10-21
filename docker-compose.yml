@@ -42,6 +42,7 @@ services:
       - POSTGRES_DB=airflow_meta
     volumes:
       - airflow_postgres_data:/var/lib/postgresql/data
+      - ./init_metadata.sql:/docker-entrypoint-initdb.d/init_metadata.sql
     networks:
       - airflow-net
     ports:

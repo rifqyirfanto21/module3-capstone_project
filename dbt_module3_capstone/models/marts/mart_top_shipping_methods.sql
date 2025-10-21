@@ -1,3 +1,11 @@
+{{
+    config(
+        materialized='table',
+        cluster_by=['carrier_name', 'shipping_type']
+    )
+}}
+
+
 WITH transactions AS(
     SELECT *
     FROM {{ source('rifqy_computerstore_capstone3', 'fct_transactions') }}
@@ -13,4 +21,3 @@ SELECT
 FROM transactions t
 JOIN shipping_methods sm ON t.shipping_method_id = sm.shipping_method_id
 GROUP BY 1, 2
-ORDER BY 4 DESC

@@ -16,6 +16,7 @@ x-airflow-common:
     _AIRFLOW_WWW_USER_PASSWORD: airflow
     PYTHONPATH: "/opt/airflow/scripts:/opt/airflow/config:/opt/airflow/dags"
     GOOGLE_APPLICATION_CREDENTIALS: /home/airflow/.config/gcloud/application_default_credentials.json
+    GOOGLE_CLOUD_PROJECT: jcdeah-006
     DBT_PROFILES_DIR: /opt/dbt
   volumes:
     - ./airflow/dags:/opt/airflow/dags

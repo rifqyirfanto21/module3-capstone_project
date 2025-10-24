@@ -70,7 +70,7 @@ def monitor_finish(source_table: str, destination_table: str, bq_project: str, b
 
     try:
         if is_incremental:
-            where_clause = f"WHERE DATE(created_at) = DATE('{execution_date}'::timestamp - interval '1 day')"
+            where_clause = f"WHERE DATE(created_at) = DATE('{execution_date}') - 1"
         else:
             where_clause = ""
 

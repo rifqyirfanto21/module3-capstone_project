@@ -159,6 +159,10 @@ with DAG(
 
         start >> monitor_start_dim >> postgres_to_gcs_dim >> wait_for_gcs_dim_file >> gcs_to_bigquery_dim >> monitor_finish_dim >> task_sleep_dim >> monitor_validate_dim >> gcs_cleanup_dim >> end
 
+FACT_TABLE = [
+    ("transactions", "fct_transactions")
+]
+
 SCHEMA_MAP = [
     {"name": "transaction_id", "type": "INTEGER", "mode": "REQUIRED"},
     {"name": "user_id", "type": "INTEGER", "mode": "REQUIRED"},
@@ -183,6 +187,8 @@ with DAG(
     
     start = DummyOperator(task_id="start")
     end = DummyOperator(task_id="end")
+
+    source_table, destination_table = FACT_TABLE[0]
 
     monitor_start_fct = PythonOperator(
         task_id="monitor_start_transactions",
@@ -236,7 +242,7 @@ with DAG(
         python_callable=monitor_finish,
         op_kwargs={
             "source_table": source_table,
-             "destination_table": destination_table,
+            "destination_table": destination_table,
             "bq_project": BQ_PROJECT,
             "bq_dataset": BQ_DS,
             "is_incremental": True

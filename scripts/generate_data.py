@@ -1,6 +1,6 @@
 from faker import Faker
 import random
-import datetime
+from datetime import datetime, timezone
 
 fake = Faker("en_US")
 
@@ -22,7 +22,7 @@ def generate_users(n):
             "email": email,
             "address": fake.address(),
             "phone_number": fake.phone_number(),
-            "created_at": datetime.datetime.now()
+            "created_at": datetime.now(timezone.utc)
         })
     return users
 
@@ -44,7 +44,7 @@ def generate_payment_methods():
             "payment_method_id": id,
             "method_name": method["method_name"],
             "provider": method["provider"],
-            "created_at": datetime.datetime.now()
+            "created_at": datetime.now(timezone.utc)
         })
 
     return result
@@ -67,7 +67,7 @@ def generate_shipping_methods():
             "shipping_method_id": id,
             "carrier_name": shipping["carrier_name"],
             "shipping_type": shipping["shipping_type"],
-            "created_at": datetime.datetime.now()
+            "created_at": datetime.now(timezone.utc)
         })
 
     return result
@@ -122,7 +122,7 @@ def generate_products():
                 "currency": "USD",
                 "price": item["price"],
                 "cost": item["cost"],
-                "created_at": datetime.datetime.now()
+                "created_at": datetime.now(timezone.utc)
             })
             id += 1
     return products
@@ -147,7 +147,7 @@ def generate_transactions(n, users, products, payment_methods, shipping_methods)
             "shipping_method_id": shipping["shipping_method_id"],
             "quantity": quantity,
             "total_amount": total_amount,
-            "created_at": datetime.datetime.now()
+            "created_at": datetime.now(timezone.utc)
         })
 
     return transactions

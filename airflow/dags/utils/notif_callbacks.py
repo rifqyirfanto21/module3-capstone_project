@@ -3,7 +3,7 @@ import requests
 from airflow.hooks.base import BaseHook
 
 TELEGRAM_CHAT_ID = "6773967052"
-#token 8462436921:AAGNWvwf414RoPtaLyALNjEvwpeBT1H_2_Y
+
 def consistent_notif_message(context, **kwargs):
     """
     Sends Telegram message when the data is consistent

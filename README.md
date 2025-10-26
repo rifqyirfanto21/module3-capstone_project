@@ -204,10 +204,12 @@ Available functions:
 - The repo provides runnable Airflow DAGs and a dbt project for transforming data. Use Docker for an isolated reproducible environment.
 
 ### Video
-- **Youtube Video Explanation:** [YouTube - Explanation](write link here)
+- **Youtube Video Explanation:** [YouTube - Explanation](https://youtu.be/mXODqcJyZtA)
 
 ### Warehouse Files
 - **BigQuery Dataset:** [rifqy_computerstore_capstone3](https://console.cloud.google.com/bigquery?project=jcdeah-006&ws=!1m9!1m4!4m3!1sjcdeah-006!2srifqy_computerstore_capstone3!3smart_products_revenue!1m3!3m2!1sjcdeah-006!2srifqy_computerstore_capstone3)
+- **Google Drive:** [Tables & Documentation](https://drive.google.com/drive/folders/11cMSgDRm6fyiEfCvY1ILV3dsg2yIjjXQ?usp=sharing)
+
 ---
 
 ## Author & Acknowledgments

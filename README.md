@@ -4,7 +4,7 @@
 **Program**: Purwadhika Data Engineering Bootcamp
 
 ## Project Overview
-This repository contains the Module 3 capstone project: a small data platform demonstrating an end-to-end ETL and transformation workflow using Apache Airflow, dbt, PostgreSQL (local DWH), and Google BigQuery. The project includes:
+This repository contains the Module 3 capstone project: a small data platform demonstrating an end-to-end ELT and transformation workflow using Apache Airflow, dbt, PostgreSQL (local DWH), and Google BigQuery. The project includes:
 
 - Data generation scripts to produce synthetic data and helper functions to insert into Postgres
 - Airflow DAGs to initialize dimensional tables and load transactions into a PostgreSQL data warehouse
@@ -52,7 +52,7 @@ This project uses a simple star-like design for the local PostgreSQL data wareho
 The schema is initialized via `init.sql` (mounted to the `dwh_postgres` container) and populated by Airflow DAGs and `scripts/db_utils.py`.
 
 ## Features
-- ETL orchestration using Airflow
+- ELT orchestration using Airflow
 - Automated dbt runs (models/test) triggered from Airflow
 - Synthetic data generation with Faker
 - SQLAlchemy-based insertion utilities for PostgreSQL
